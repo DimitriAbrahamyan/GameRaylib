@@ -133,10 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameRaylib.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="spaceShip.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameRaylib.h" />
+    <ClInclude Include="game.hpp" />
+    <ClInclude Include="spaceShip.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
