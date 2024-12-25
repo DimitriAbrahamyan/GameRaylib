@@ -10,5 +10,6 @@ public:
 	void HandleInput();
 
 private:
+	void DeleteInactiveLasers();
 	SpaceShip spaceship;
 };

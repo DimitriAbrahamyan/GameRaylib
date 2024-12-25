@@ -134,11 +134,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="laser.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="spaceShip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.hpp" />
+    <ClInclude Include="laser.hpp" />
     <ClInclude Include="spaceShip.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
