@@ -1,8 +1,4 @@
-﻿  game.cpp
-  main.cpp
-  spaceShip.cpp
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\spaceShip.cpp(5,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\spaceShip.cpp(6,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\spaceShip.cpp(28,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
+﻿  spaceShip.cpp
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\spaceShip.cpp(6,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\spaceShip.cpp(28,47): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   GameRaylib.vcxproj -> C:\Users\Dell\Desktop\GameRaylib\GameRaylib\x64\Debug\GameRaylib.exe

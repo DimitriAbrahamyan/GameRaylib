@@ -7,7 +7,7 @@ class SpaceShip {
 public:
 	SpaceShip();
 	~SpaceShip();
-	void Draw();
+	void Draw() const;
 	void MoveLeft();
 	void MoveRight();
 	void FireLaser();

@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "game.hpp"
 #include "laser.hpp"
+#include "obstacle.hpp"
 
 
 int main() {
