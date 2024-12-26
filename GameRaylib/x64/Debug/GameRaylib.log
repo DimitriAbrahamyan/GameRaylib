@@ -1,4 +1,15 @@
-﻿  spaceShip.cpp
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\spaceShip.cpp(6,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\spaceShip.cpp(28,47): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  game.cpp
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.hpp(26,53): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'game.cpp')
+  
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(85,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(114,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(115,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(148,53): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(153,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.hpp(26,53): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'main.cpp')
+  
+  Generating Code...
   GameRaylib.vcxproj -> C:\Users\Dell\Desktop\GameRaylib\GameRaylib\x64\Debug\GameRaylib.exe

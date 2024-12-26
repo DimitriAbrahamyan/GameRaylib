@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="alien.cpp" />
     <ClCompile Include="block.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="laser.cpp" />
@@ -141,6 +142,7 @@
     <ClCompile Include="spaceShip.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="alien.hpp" />
     <ClInclude Include="block.hpp" />
     <ClInclude Include="game.hpp" />
     <ClInclude Include="laser.hpp" />
