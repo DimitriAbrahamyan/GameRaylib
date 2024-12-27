@@ -1,12 +1,7 @@
 #include "game.hpp"
 
 Game::Game() {
-	obstacles = CreateObstacles();
-	aliens = CreateAliens();
-	aliensDirecrion = 1;
-	timeLastAlienFired = 0.0f;
-	timeLastSpawn = 0.0f;
-	mysteryShipSpawnInternal = GetRandomValue(10, 20);
+	InitGame();
 }
 
 Game::~Game() {
@@ -37,41 +32,53 @@ void Game::Draw() {
 
 
 void Game::Update() {
-	double currentTime = GetTime();
-	if (currentTime - timeLastSpawn > mysteryShipSpawnInternal) {
-		mysteryShip.Spawn();
-		timeLastSpawn = GetTime();
-		mysteryShipSpawnInternal = GetRandomValue(10, 20);
+	if (run) {
+
+		double currentTime = GetTime();
+		if (currentTime - timeLastSpawn > mysteryShipSpawnInternal) {
+			mysteryShip.Spawn();
+			timeLastSpawn = GetTime();
+			mysteryShipSpawnInternal = GetRandomValue(10, 20);
+		}
+
+		for (auto& laser : spaceship.lasers) {
+			laser.Update();
+		}
+
+		MoveAliens();
+
+		AlienShootLaser();
+
+		for (auto& laser : alienLasers) {
+			laser.Update();
+		}
+
+		DeleteInactiveLasers();
+
+		mysteryShip.Update();
+
+		CheckForCollision();
 	}
-
-	for (auto& laser : spaceship.lasers) {
-		laser.Update();
+	else {
+		if (IsKeyDown(KEY_ENTER)) {
+			Reset();
+			InitGame();
+		}
 	}
-
-	MoveAliens();
-
-	AlienShootLaser();
-
-	for (auto& laser : alienLasers) {
-		laser.Update();
-	}
-
-	DeleteInactiveLasers();
-
-	mysteryShip.Update();
-
-	CheckForCollision();
 }
 
 void Game::HandleInput() {
-	if (IsKeyDown(KEY_LEFT)) {
-		spaceship.MoveLeft();
-	}
-	else if (IsKeyDown(KEY_RIGHT)) {
-		spaceship.MoveRight();
-	}
-	else if (IsKeyDown(KEY_SPACE)) {
-		spaceship.FireLaser();
+	if (run)
+	{
+		if (IsKeyDown(KEY_LEFT)) {
+			spaceship.MoveLeft();
+		}
+		else if (IsKeyDown(KEY_RIGHT)) {
+			spaceship.MoveRight();
+		}
+		else if (IsKeyDown(KEY_SPACE)) {
+			spaceship.FireLaser();
+		}
 	}
 }
 
@@ -101,7 +108,7 @@ std::vector<Obstacle> Game::CreateObstacles() {
 
 	for (int i = 0; i < 4; ++i) {
 		float offsetX = (i + 1) * gap + i * obstacleWidth;
-		obstacles.push_back(Obstacle({ offsetX,float(GetScreenHeight() - 100)}));
+		obstacles.push_back(Obstacle({ offsetX,float(GetScreenHeight() - 200)}));
 	}
 
 	return obstacles;
@@ -138,10 +145,10 @@ void Game::MoveAliens() {
 
 
 	for (auto& alien : aliens) {
-		if (alien.position.x + alien.alienImages[alien.type - 1].width > GetScreenWidth()) {
+		if (alien.position.x + alien.alienImages[alien.type - 1].width > GetScreenWidth() - 25) {
 			aliensDirecrion = -1;
 		}
-		else if (alien.position.x < 0){
+		else if (alien.position.x < 25){
 			aliensDirecrion = 1;
 		}
 
@@ -217,7 +224,51 @@ void Game::CheckForCollision() {
 
 		if (CheckCollisionRecs(laser.getRect(), spaceship.getRect())) {
 			laser.active = false;
-			std::cout << "Spaceship Hit\n";
+			--lives;
+			if (!lives) {
+				GameOver();
+			}
 		}
 	}
+
+	// Alien Collision with Obstacle 
+
+	for (auto& alien : aliens) {
+		for (auto& obstacle : obstacles) {
+			auto it = obstacle.blocks.begin();
+			while (it != obstacle.blocks.end()) {
+				if (CheckCollisionRecs(it->getRect(), alien.getRect())) {
+					it = obstacle.blocks.erase(it);
+				} else {
+					++it;
+				}
+			}
+		}
+
+		if (CheckCollisionRecs(alien.getRect(), spaceship.getRect())) {
+			GameOver();
+		}
+	}
+}
+
+void Game::GameOver() {
+	run = false;
+}
+
+void Game::Reset() {
+	spaceship.Reset();
+	aliens.clear();
+	alienLasers.clear();
+	obstacles.clear();
+}
+
+void Game::InitGame() {
+	obstacles = CreateObstacles();
+	aliens = CreateAliens();
+	aliensDirecrion = 1;
+	timeLastAlienFired = 0.0f;
+	timeLastSpawn = 0.0f;
+	lives = 3;
+	run = true;
+	mysteryShipSpawnInternal = GetRandomValue(10, 20);
 }

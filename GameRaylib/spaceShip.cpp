@@ -2,8 +2,8 @@
 
 SpaceShip::SpaceShip() {
 	image = LoadTexture("Graphics/spaceship.png");
-	position.x = (static_cast<float>(GetScreenWidth()) - image.width) / 2;
-	position.y = GetScreenHeight() - image.height ;
+	position.x = (static_cast<float>(GetScreenWidth()) - image.width) / 2.0f;
+	position.y = GetScreenHeight() - image.height - 100;
 	lastFireTime = 0.0;
 }
 
@@ -38,4 +38,10 @@ void SpaceShip::FireLaser() {
 
 Rectangle SpaceShip::getRect() {
 	return { position.x,position.y,float(image.width),float(image.height) };
+}
+
+void SpaceShip::Reset() {
+	position.x = (static_cast<float>(GetScreenWidth()) - image.width) / 2.0f;
+	position.y = GetScreenHeight() - image.height - 100;
+	lasers.clear();
 }

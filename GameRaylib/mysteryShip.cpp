@@ -29,11 +29,11 @@ void MysteryShip::Spawn() {
 	int side = GetRandomValue(0, 1);
 
 	if (!side) {
-		position.x = 0;
+		position.x = 25;
 		speed = 3;
 	}
 	else {
-		position.x = GetScreenWidth() - image.width;
+		position.x = GetScreenWidth() - image.width - 25;
 		speed = -3;
 	}
 
