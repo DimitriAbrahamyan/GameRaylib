@@ -2,6 +2,7 @@
 #include "spaceShip.hpp"
 #include "obstacle.hpp"
 #include "alien.hpp"
+#include "mysteryShip.hpp"
 
 class Game {
 public:
@@ -19,10 +20,13 @@ private:
 	void MoveDownAliens(int distance);
 	void AlienShootLaser();
 	SpaceShip spaceship;
+	MysteryShip mysteryShip;
 	std::vector<Obstacle> obstacles;
 	std::vector<Alien> aliens;
 	int aliensDirecrion;
 	std::vector<Laser> alienLasers;
 	constexpr static float alienLaserShooterInterval = 0.35;
 	float timeLastAlienFired;
+	float mysteryShipSpawnInternal;
+	float timeLastSpawn;
 };

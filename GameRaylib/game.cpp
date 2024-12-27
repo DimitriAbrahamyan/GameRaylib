@@ -5,6 +5,8 @@ Game::Game() {
 	aliens = CreateAliens();
 	aliensDirecrion = 1;
 	timeLastAlienFired = 0.0f;
+	timeLastSpawn = 0.0f;
+	mysteryShipSpawnInternal = GetRandomValue(10, 20);
 }
 
 Game::~Game() {
@@ -29,10 +31,19 @@ void Game::Draw() {
 	for (auto& laser : alienLasers) {
 		laser.Draw();
 	}
+
+	mysteryShip.Draw();
 }
 
 
 void Game::Update() {
+	double currentTime = GetTime();
+	if (currentTime - timeLastSpawn > mysteryShipSpawnInternal) {
+		mysteryShip.Spawn();
+		timeLastSpawn = GetTime();
+		mysteryShipSpawnInternal = GetRandomValue(10, 20);
+	}
+
 	for (auto& laser : spaceship.lasers) {
 		laser.Update();
 	}
@@ -46,6 +57,7 @@ void Game::Update() {
 	}
 
 	DeleteInactiveLasers();
+	mysteryShip.Update();
 }
 
 void Game::HandleInput() {
@@ -65,8 +77,7 @@ void Game::DeleteInactiveLasers()
 	for (auto it = spaceship.lasers.begin(); it != spaceship.lasers.end(); ) {
 		if (!it->active) {
 			it = spaceship.lasers.erase(it);
-		}
-		else {
+		} else {
 			++it;
 		}
 	}
