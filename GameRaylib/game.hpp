@@ -3,6 +3,7 @@
 #include "obstacle.hpp"
 #include "alien.hpp"
 #include "mysteryShip.hpp"
+#include <iostream>
 
 class Game {
 public:
@@ -19,6 +20,7 @@ private:
 	void MoveAliens();
 	void MoveDownAliens(int distance);
 	void AlienShootLaser();
+	void CheckForCollision();
 	SpaceShip spaceship;
 	MysteryShip mysteryShip;
 	std::vector<Obstacle> obstacles;

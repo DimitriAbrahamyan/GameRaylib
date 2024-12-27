@@ -57,7 +57,10 @@ void Game::Update() {
 	}
 
 	DeleteInactiveLasers();
+
 	mysteryShip.Update();
+
+	CheckForCollision();
 }
 
 void Game::HandleInput() {
@@ -162,5 +165,59 @@ void Game::AlienShootLaser() {
 			alien.position.y + alien.alienImages[alien.type - 1].height }, 6));
 
 		timeLastAlienFired = GetTime();
+	}
+}
+
+void Game::CheckForCollision() {
+	// Spaceship Lasers
+	for (auto& laser : spaceship.lasers) {
+		auto it = aliens.begin();
+		while (it != aliens.end()) {
+			if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
+				it = aliens.erase(it);
+				laser.active = false;
+			} else {
+				++it;
+			}
+		}
+
+		for (auto& obstacle : obstacles) {
+			auto it = obstacle.blocks.begin();
+			while (it != obstacle.blocks.end()) {
+				if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
+					it = obstacle.blocks.erase(it);
+					laser.active = false;
+				} else {
+					++it;
+				}
+			}
+		}
+
+		if (CheckCollisionRecs(mysteryShip.getRect(),laser.getRect())) {
+			mysteryShip.alive = false;
+			laser.active = false;
+		}
+	}
+
+	// Alien Lasers
+
+	for (auto& laser : alienLasers) {
+		for (auto& obstacle : obstacles) {
+			auto it = obstacle.blocks.begin();
+			while (it != obstacle.blocks.end()) {
+				if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
+					it = obstacle.blocks.erase(it);
+					laser.active = false;
+				}
+				else {
+					++it;
+				}
+			}
+		}
+
+		if (CheckCollisionRecs(laser.getRect(), spaceship.getRect())) {
+			laser.active = false;
+			std::cout << "Spaceship Hit\n";
+		}
 	}
 }
