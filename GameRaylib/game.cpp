@@ -181,6 +181,7 @@ void Game::CheckForCollision() {
 		auto it = aliens.begin();
 		while (it != aliens.end()) {
 			if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
+				score += it->type * 100;
 				it = aliens.erase(it);
 				laser.active = false;
 			} else {
@@ -203,6 +204,7 @@ void Game::CheckForCollision() {
 		if (CheckCollisionRecs(mysteryShip.getRect(),laser.getRect())) {
 			mysteryShip.alive = false;
 			laser.active = false;
+			score += 500;
 		}
 	}
 
@@ -269,6 +271,7 @@ void Game::InitGame() {
 	timeLastAlienFired = 0.0f;
 	timeLastSpawn = 0.0f;
 	lives = 3;
+	score = 0;
 	run = true;
 	mysteryShipSpawnInternal = GetRandomValue(10, 20);
 }
