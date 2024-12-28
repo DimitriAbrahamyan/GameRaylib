@@ -140,6 +140,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mysteryShip.cpp" />
     <ClCompile Include="obstacle.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="spaceShip.cpp" />
   </ItemGroup>
   <ItemGroup>

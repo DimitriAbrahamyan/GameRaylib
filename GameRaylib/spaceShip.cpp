@@ -5,10 +5,12 @@ SpaceShip::SpaceShip() {
 	position.x = (static_cast<float>(GetScreenWidth()) - image.width) / 2.0f;
 	position.y = GetScreenHeight() - image.height - 100;
 	lastFireTime = 0.0;
+	laserSound = LoadSound("Sounds/laser.ogg");
 }
 
 SpaceShip::~SpaceShip() {
 	UnloadTexture(image);
+	UnloadSound(laserSound);
 }
 
 void SpaceShip::Draw() const {
@@ -33,6 +35,7 @@ void SpaceShip::FireLaser() {
 	if (GetTime() - lastFireTime >= 0.35) {
 		lasers.push_back(Laser({ position.x + image.width / 2 - 2,position.y }, -6));
 		lastFireTime = GetTime();
+		PlaySound(laserSound);
 	}
 }
 

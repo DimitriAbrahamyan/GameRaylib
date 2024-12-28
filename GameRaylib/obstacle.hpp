@@ -9,6 +9,4 @@ public:
 	Vector2 position;
 	std::vector<Block> blocks;
 	static std::vector<std::vector<int>> grid;
-private:
-
 };

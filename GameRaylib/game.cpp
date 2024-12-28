@@ -3,11 +3,16 @@
 #include <iostream>
 
 Game::Game() {
+	music = LoadMusicStream("Sounds/music.ogg");
+	explosionSound = LoadSound("Sounds/explosion.ogg");
+	PlayMusicStream(music);
 	InitGame();
 }
 
 Game::~Game() {
-	Alien::UnloadImages();
+	Alien::UnloadImages();	
+	UnloadMusicStream(music);
+	UnloadSound(explosionSound);	
 }
 
 void Game::Draw() {
@@ -149,9 +154,11 @@ void Game::MoveAliens() {
 	for (auto& alien : aliens) {
 		if (alien.position.x + alien.alienImages[alien.type - 1].width > GetScreenWidth() - 25) {
 			aliensDirecrion = -1;
+			MoveDownAliens(4);
 		}
 		else if (alien.position.x < 25){
 			aliensDirecrion = 1;
+			MoveDownAliens(4);
 		}
 
 		alien.Update(aliensDirecrion);
@@ -183,6 +190,7 @@ void Game::CheckForCollision() {
 		auto it = aliens.begin();
 		while (it != aliens.end()) {
 			if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
+				PlaySound(explosionSound);
 				score += it->type * 100;
 
 				CheckForHighScore();
@@ -209,6 +217,8 @@ void Game::CheckForCollision() {
 			mysteryShip.alive = false;
 			laser.active = false;
 			score += 500;
+			CheckForHighScore();
+			PlaySound(explosionSound);
 		}
 	}
 
