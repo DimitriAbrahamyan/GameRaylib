@@ -1,4 +1,6 @@
 #include "game.hpp"
+#include <fstream>
+#include <iostream>
 
 Game::Game() {
 	InitGame();
@@ -182,6 +184,8 @@ void Game::CheckForCollision() {
 		while (it != aliens.end()) {
 			if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
 				score += it->type * 100;
+
+				CheckForHighScore();
 				it = aliens.erase(it);
 				laser.active = false;
 			} else {
@@ -272,6 +276,38 @@ void Game::InitGame() {
 	timeLastSpawn = 0.0f;
 	lives = 3;
 	score = 0;
+	highScore = loadHighScoreFromFile();
 	run = true;
 	mysteryShipSpawnInternal = GetRandomValue(10, 20);
+}
+
+void Game::CheckForHighScore() {
+	if (score > highScore) {
+		highScore = score;
+		saveHighScoreToFile(highScore);
+	}
+}
+
+void Game::saveHighScoreToFile(int highScore) {
+	std::ofstream highscoreFile("highscore.txt");
+	if (highscoreFile.is_open()) {
+		highscoreFile << highScore;
+		highscoreFile.close();
+	}
+	else {
+		std::cerr << "Failed to save highscore to file\n";
+	}
+}
+
+int Game::loadHighScoreFromFile() {
+	int loadingHighscore = 0;
+	std::ifstream highscoreFile("highscore.txt");
+	if (highscoreFile.is_open()) {
+		highscoreFile >> loadingHighscore;
+		highscoreFile.close();
+	} else {
+		std::cerr << "Failed to load highscore from file\n";
+	}
+
+	return loadingHighscore;
 }

@@ -3,7 +3,6 @@
 #include "obstacle.hpp"
 #include "alien.hpp"
 #include "mysteryShip.hpp"
-#include <iostream>
 
 class Game {
 public:
@@ -15,6 +14,7 @@ public:
 	bool run;
 	int lives;
 	int score;
+	int highScore;
 private:
 	void DeleteInactiveLasers();
 	std::vector<Obstacle> CreateObstacles();
@@ -26,6 +26,9 @@ private:
 	void GameOver();
 	void Reset();
 	void InitGame();
+	void CheckForHighScore();
+	void saveHighScoreToFile(int highScore);
+	int loadHighScoreFromFile();
 	SpaceShip spaceship;
 	MysteryShip mysteryShip;
 	std::vector<Obstacle> obstacles;
