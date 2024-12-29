@@ -18,7 +18,7 @@ void MysteryShip::Update() {
 	}
 }
 
-void MysteryShip::Draw() {
+void MysteryShip::Draw() const {
 	if (alive) {
 		DrawTextureV(image, position, WHITE);	
 	}

@@ -35,17 +35,24 @@ void Game::Draw() {
 	}
 
 	mysteryShip.Draw();
+
+	spaceshipHeart.Draw();
 }
 
 
 void Game::Update() {
 	if (run) {
-
 		double currentTime = GetTime();
-		if (currentTime - timeLastSpawn > mysteryShipSpawnInternal) {
+		if (currentTime - timeLastSpawnMysteryShip > mysteryShipSpawnInternal) {
 			mysteryShip.Spawn();
-			timeLastSpawn = GetTime();
+			timeLastSpawnMysteryShip = GetTime();
 			mysteryShipSpawnInternal = GetRandomValue(10, 20);
+		}
+
+		if (currentTime - timeLastSpawnHeart > heartSpawnInternal) {
+			spaceshipHeart.Spawn();
+			timeLastSpawnHeart = GetTime();
+			heartSpawnInternal = GetRandomValue(10, 20);
 		}
 
 		for (auto& laser : spaceship.lasers) {
@@ -63,6 +70,8 @@ void Game::Update() {
 		DeleteInactiveLasers();
 
 		mysteryShip.Update();
+
+		spaceshipHeart.Update();
 
 		CheckForCollision();
 	}
@@ -128,7 +137,7 @@ std::vector<Alien> Game::CreateAliens() {
 			int alienType;
 			switch (row) {
 			case 0:
-					alienType = 3;
+				alienType = 3;
 				break;
 			case 2:
 			case 3:
@@ -149,8 +158,6 @@ std::vector<Alien> Game::CreateAliens() {
 }
 
 void Game::MoveAliens() {
-
-
 	for (auto& alien : aliens) {
 		if (alien.position.x + alien.alienImages[alien.type - 1].width > GetScreenWidth() - 25) {
 			aliensDirecrion = -1;
@@ -223,7 +230,6 @@ void Game::CheckForCollision() {
 	}
 
 	// Alien Lasers
-
 	for (auto& laser : alienLasers) {
 		for (auto& obstacle : obstacles) {
 			auto it = obstacle.blocks.begin();
@@ -245,10 +251,17 @@ void Game::CheckForCollision() {
 				GameOver();
 			}
 		}
+
+		if (CheckCollisionRecs(spaceshipHeart.getRect(), spaceship.getRect())) {
+			spaceshipHeart.active = false;
+			++lives;
+			if (lives > 3) {
+				lives = 3;
+			}
+		}
 	}
 
 	// Alien Collision with Obstacle 
-
 	for (auto& alien : aliens) {
 		for (auto& obstacle : obstacles) {
 			auto it = obstacle.blocks.begin();
@@ -283,12 +296,14 @@ void Game::InitGame() {
 	aliens = CreateAliens();
 	aliensDirecrion = 1;
 	timeLastAlienFired = 0.0f;
-	timeLastSpawn = 0.0f;
+	timeLastSpawnMysteryShip = 0.0f;
+	timeLastSpawnHeart = 0.0f;
 	lives = 3;
 	score = 0;
 	highScore = loadHighScoreFromFile();
 	run = true;
 	mysteryShipSpawnInternal = GetRandomValue(10, 20);
+	heartSpawnInternal = GetRandomValue(10, 20);
 }
 
 void Game::CheckForHighScore() {

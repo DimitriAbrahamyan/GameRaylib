@@ -6,7 +6,7 @@ public:
 	MysteryShip();
 	~MysteryShip();
 	void Update();
-	void Draw();
+	void Draw() const;
 	void Spawn();
 	Rectangle getRect();
 	bool alive;

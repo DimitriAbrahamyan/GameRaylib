@@ -3,6 +3,7 @@
 #include "obstacle.hpp"
 #include "alien.hpp"
 #include "mysteryShip.hpp"
+#include "heart.hpp"
 
 class Game {
 public:
@@ -32,6 +33,7 @@ private:
 	int loadHighScoreFromFile();
 	SpaceShip spaceship;
 	MysteryShip mysteryShip;
+	Heart spaceshipHeart;
 	std::vector<Obstacle> obstacles;
 	std::vector<Alien> aliens;
 	int aliensDirecrion;
@@ -39,6 +41,8 @@ private:
 	constexpr static float alienLaserShooterInterval = 0.35;
 	float timeLastAlienFired;
 	float mysteryShipSpawnInternal;
-	float timeLastSpawn;
+	float heartSpawnInternal;
+	float timeLastSpawnMysteryShip;
+	float timeLastSpawnHeart;
 	Sound explosionSound;
 };

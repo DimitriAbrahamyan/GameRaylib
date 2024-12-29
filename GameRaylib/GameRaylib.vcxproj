@@ -136,17 +136,18 @@
     <ClCompile Include="alien.cpp" />
     <ClCompile Include="block.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="heart.cpp" />
     <ClCompile Include="laser.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mysteryShip.cpp" />
     <ClCompile Include="obstacle.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="spaceShip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alien.hpp" />
     <ClInclude Include="block.hpp" />
     <ClInclude Include="game.hpp" />
+    <ClInclude Include="heart.hpp" />
     <ClInclude Include="laser.hpp" />
     <ClInclude Include="mysteryShip.hpp" />
     <ClInclude Include="obstacle.hpp" />
