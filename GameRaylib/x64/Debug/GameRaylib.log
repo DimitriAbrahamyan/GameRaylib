@@ -1,16 +1,6 @@
-﻿  game.cpp
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.hpp(41,53): warning C4305: 'initializing': truncation from 'double' to 'const float'
-  (compiling source file 'game.cpp')
+﻿  main.cpp
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.hpp(107,56): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'main.cpp')
   
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(48,38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(49,45): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(54,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(55,39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(122,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(151,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(152,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(185,53): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(190,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(305,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.cpp(306,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\main.cpp(8,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   GameRaylib.vcxproj -> C:\Users\Dell\Desktop\GameRaylib\GameRaylib\x64\Debug\GameRaylib.exe
