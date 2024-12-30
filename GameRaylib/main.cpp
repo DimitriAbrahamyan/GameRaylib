@@ -53,12 +53,19 @@ int main() {
         DrawLineEx({ 25, 730 }, { 775, 730 }, 3, yellow);
 
         // Display either "LEVEL 01" or "GAME OVER" depending on the game state
-        if (game.run) {
-            DrawTextEx(font, "LEVEL 01", { 570, 740 }, 34, 2, yellow);  // Show level text if the game is running
+        if (!game.CheckForWinGame())
+        {
+            if (game.run) {
+                DrawTextEx(font, "LEVEL 01", { 570, 740 }, 34, 2, yellow);  // Show level text if the game is running
+            }
+            else {
+                DrawTextEx(font, "GAME OVER", { 570, 740 }, 34, 2, yellow);  // Show "Game Over" text if the game has ended
+            }
         }
         else {
-            DrawTextEx(font, "GAME OVER", { 570, 740 }, 34, 2, yellow);  // Show "Game Over" text if the game has ended
+            DrawTextEx(font, "WIN GAME", { 570,740 }, 34, 2, yellow);
         }
+
 
         // Draw lives (spaceships) at the bottom of the screen
         float x = 50.0f;
@@ -73,7 +80,7 @@ int main() {
         DrawTextEx(font, scoreText.c_str(), { 50, 40 }, 34, 2, yellow);  // Display the formatted score
 
         // Display high score
-        DrawTextEx(font, "HIGH-SCORE", { 570, 15 }, 34, 2, yellow);  // Display "HIGH-SCORE" label
+        DrawTextEx(font, "BEST SCORE", { 570, 15 }, 34, 2, yellow);  // Display "HIGH-SCORE" label
         std::string highScoreText = FormatWithLeadingZero(game.highScore, 5);  // Format the high score with leading zeros
         DrawTextEx(font, highScoreText.c_str(), { 655, 40 }, 34, 2, yellow);  // Display the formatted high score
 

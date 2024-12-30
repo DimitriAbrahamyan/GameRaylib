@@ -24,6 +24,9 @@ public:
     // Handles user input, such as controlling the spaceship.
     void HandleInput();
 
+    // Checks for player wins game or not
+    bool CheckForWinGame();
+
     // Public variables:
     // 'run' determines if the game loop should continue running.
     bool run;
@@ -79,6 +82,8 @@ private:
 
     // Loads the high score from a file at the start of the game.
     int loadHighScoreFromFile();
+
+
 
     // Private variables:
 

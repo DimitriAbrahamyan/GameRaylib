@@ -102,6 +102,9 @@ void Game::Update() {
 
 		// Check for collisions between various game objects
 		CheckForCollision();
+
+        // Check for win of game
+        CheckForWinGame();
 	}
 	else {
 		// If the game is not running, listen for the ENTER key to restart the game
@@ -390,5 +393,18 @@ int Game::loadHighScoreFromFile() {
     }
 
     return loadingHighscore; // Return the loaded high score
+}
+
+bool Game::CheckForWinGame() {
+    if (run) {
+        run = !aliens.empty();
+    }
+    if (aliens.empty()) {
+        alienLasers.clear();
+        DeleteInactiveLasers();
+        return true;
+    }
+
+    return false;
 }
 

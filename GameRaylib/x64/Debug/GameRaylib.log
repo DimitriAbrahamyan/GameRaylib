@@ -1,5 +1,5 @@
 ﻿  main.cpp
-C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.hpp(107,56): warning C4305: 'initializing': truncation from 'double' to 'const float'
+C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\game.hpp(112,56): warning C4305: 'initializing': truncation from 'double' to 'const float'
   (compiling source file 'main.cpp')
   
 C:\Users\Dell\Desktop\GameRaylib\GameRaylib\GameRaylib\main.cpp(8,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
